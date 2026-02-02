@@ -1,0 +1,24 @@
+{
+  "name": "group1_cps630_a1",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/csimpao/CPS630-Restaurant-Web/tree/main#readme",
+  "bugs": {
+    "url": "https://github.com/csimpao/CPS630-Restaurant-Web/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csimpao/CPS630-Restaurant-Web.git#main"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
