@@ -1,9 +1,9 @@
 const getOrders = (repository) => (req, res) => {
   const { userId } = req.params;
 
-  const todos = repository.getOrders(userId);
-  if (todos) {
-    res.status(200).json(todos);
+  const orders = repository.getOrders(userId);
+  if (orders) {
+    res.status(200).json(orders);
   } else {
     res.status(400).json({
       message: 'invalid user',

@@ -1,8 +1,8 @@
 const orderItem = (repository) => (req, res) => {
   const { userId, orderId } = req.params;
-  const { todo } = req.body;
+  const { order } = req.body;
 
-  const success = repository.orderItem(userId, orderId, todo);
+  const success = repository.orderItem(userId, orderId, order);
   if (success) {
     res.status(200).json({
       message: 'success',

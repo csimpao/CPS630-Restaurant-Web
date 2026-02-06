@@ -24,7 +24,7 @@ describe('repository', () => {
     repository.deleteUser('allan');
   });
 
-  it('should correctly add todos', () => {
+  it('should correctly add orders', () => {
     const repository = new Repository();
     repository.addUser('allan');
 

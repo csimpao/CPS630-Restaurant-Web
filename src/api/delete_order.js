@@ -8,7 +8,7 @@ const deleteItem = (repository) => (req, res) => {
     });
   } else {
     res.status(400).json({
-      message: 'invalid user or todo',
+      message: 'invalid user or order',
     });
   }
 };

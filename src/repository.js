@@ -16,11 +16,11 @@ export default class Repository {
     delete this.dict[userId];
   }
 
-  orderItem(userId, orderId, todo) {
+  orderItem(userId, orderId, order) {
     const userOrders = this.dict[userId];
 
     if (userOrders) {
-      this.dict[userId][orderId] = todo;
+      this.dict[userId][orderId] = order;
       return true;
     } else {
       return false;
