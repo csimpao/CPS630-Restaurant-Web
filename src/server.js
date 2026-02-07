@@ -23,8 +23,8 @@ function main() {
   app.get('/menu', (req, res) => {
     res.sendFile(path.join(__dirname, '../views/menu.html'));
   });
-  app.get('/end', (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/ending.html'));
+  app.get('/orders', (req, res) => {
+    res.sendFile(path.join(__dirname, '../views/orders.html'));
   });
   app.get('/receipt', (req, res) => {
     res.sendFile(path.join(__dirname, '../views/receipt.html'));
