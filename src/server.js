@@ -1,8 +1,13 @@
 import express from 'express';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 import api from './api/index.js';
 import Repository from './repository.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const PORT = 8080;
 
@@ -16,13 +21,13 @@ function main() {
   app.use('/api', api(repository));
 
   app.get('/menu', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/menu.html'));
+    res.sendFile(path.join(__dirname, '../views/menu.html'));
   });
   app.get('/end', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/ending.html'));
+    res.sendFile(path.join(__dirname, '../views/ending.html'));
   });
   app.get('/receipt', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/receipt.html'));
+    res.sendFile(path.join(__dirname, '../views/receipt.html'));
   });
 
   app.listen(PORT, '0.0.0.0', () => {
