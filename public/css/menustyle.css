@@ -10,14 +10,18 @@ body {
     text-align: center;
 }
 
-body > h3 {
-    font-family: 'Gill Sans';
-    color: darkred;
+body > section > ul {
+    list-style-type: none;
 }
 
-body > form {
+body > section > ul > li {
     font-family: 'Verdana';
     color: darkslategray;
+}
+
+body > section > h3 {
+    font-family: 'Gill Sans';
+    color: darkred;
 }
 
 html {
