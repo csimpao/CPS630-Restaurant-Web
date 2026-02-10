@@ -1,0 +1,23 @@
+body {
+    text-align: center;
+}
+
+body > h1 {
+    font-family: 'Impact';
+    color: darkgreen;
+}
+
+body > div > section > ul {
+    list-style-type: none;
+    font-family: 'Verdana';
+    color: darkslategray;
+}
+
+body > div > section > h3 {
+    font-family: 'Gill Sans';
+    color: darkred;
+}
+
+html {
+    background-color: cyan;
+}
