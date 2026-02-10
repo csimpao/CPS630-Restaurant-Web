@@ -61,6 +61,8 @@ button {
     padding: 8px 16px;
     cursor: pointer;
 }
+
+/*
 body {
     text-align: center;
 }
@@ -80,7 +82,7 @@ body > div > section > h3 {
     font-family: 'Gill Sans';
     color: darkred;
 }
-
+*/
 html {
     background-color: cyan;
 }
