@@ -114,3 +114,10 @@ if (viewOrdersButton) {
     window.location.href = '/orders';
   });
 }
+
+const viewReceiptButton = document.getElementById('view-receipt');
+if (viewReceiptButton) {
+  viewReceiptButton.addEventListener('click', () => {
+    window.location.href = '/receipt';
+  });
+}

@@ -1,3 +1,66 @@
+h1 {
+    text-align: center;
+    font-family: 'Trebuchet MS';
+    font-weight: bolder;
+    color: blue;
+    text-decoration: underline;
+}
+
+body {
+    text-align: center;
+}
+
+html {
+    background-color: lightgreen;
+}
+
+#receipt {
+    margin: 20px auto;
+    max-width: 500px;
+    text-align: left;
+}
+
+#receipt section {
+    margin-bottom: 16px;
+}
+
+#receipt h3 {
+    font-family: 'Gill Sans';
+    color: darkred;
+    margin-bottom: 4px;
+}
+
+#receipt ul {
+    list-style: none;
+    padding: 0;
+    font-family: 'Verdana';
+    color: darkslategray;
+}
+
+#receipt ul li {
+    padding: 2px 0;
+}
+
+.receipt-total {
+    margin-top: 16px;
+    font-family: 'Verdana';
+    font-weight: bold;
+    font-size: 1.1em;
+    color: darkslategray;
+    text-align: center;
+}
+
+#receipt-status {
+    font-family: 'Verdana';
+    color: darkslategray;
+    margin: 12px 0;
+}
+
+button {
+    margin: 8px 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
 body {
     text-align: center;
 }
