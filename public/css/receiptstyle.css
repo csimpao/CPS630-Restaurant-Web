@@ -1,89 +1,119 @@
-h1 {
-    text-align: center;
-    font-family: 'Trebuchet MS';
-    font-weight: bolder;
-    color: blue;
-    text-decoration: underline;
+html {
+  background-color: #d4edda;
 }
 
 body {
-    text-align: center;
+  text-align: center;
+  font-family: 'trebuchet ms', sans-serif;
+  padding: 20px;
+  color: #333;
 }
 
-html {
-    background-color: lightgreen;
+h1 {
+  color: #1b5e20;
+  font-size: 2.2em;
+  margin: 25px 0;
+  text-transform: uppercase;
 }
 
 #receipt {
-    margin: 20px auto;
-    max-width: 500px;
-    text-align: left;
+  margin: 20px auto;
+  max-width: 600px;
+  text-align: left;
+  background: white;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 #receipt section {
-    margin-bottom: 16px;
+  margin-bottom: 18px;
+  padding: 12px;
+  background: #f1f8f4;
+  border-radius: 6px;
+  border-left: 3px solid #4caf50;
 }
 
 #receipt h3 {
-    font-family: 'Gill Sans';
-    color: darkred;
-    margin-bottom: 4px;
+  color: #2e7d32;
+  margin-bottom: 10px;
+  font-size: 1.3em;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #66bb6a;
 }
 
 #receipt ul {
-    list-style: none;
-    padding: 0;
-    font-family: 'Verdana';
-    color: darkslategray;
+  list-style: none;
+  padding: 0;
+  color: #555;
 }
 
 #receipt ul li {
-    padding: 2px 0;
+  padding: 6px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+#receipt ul li:last-child {
+  border-bottom: none;
 }
 
 .receipt-total {
-    margin-top: 16px;
-    font-family: 'Verdana';
-    font-weight: bold;
-    font-size: 1.1em;
-    color: darkslategray;
-    text-align: center;
-}
-
-#receipt-status {
-    font-family: 'Verdana';
-    color: darkslategray;
-    margin: 12px 0;
+  margin-top: 18px;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #1b5e20;
+  text-align: center;
+  padding: 12px;
+  background: #e8f5e9;
+  border-radius: 6px;
+  border: 2px solid #4caf50;
 }
 
 button {
-    margin: 8px 4px;
-    padding: 8px 16px;
-    cursor: pointer;
+  margin: 10px 5px;
+  padding: 12px 24px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-/*
-body {
-    text-align: center;
+button:hover {
+  background-color: #2e7d32;
 }
 
-body > h1 {
-    font-family: 'Impact';
-    color: darkgreen;
+input[type='number'],
+.item-quantity {
+  width: 60px;
+  padding: 6px;
+  margin-left: 8px;
+  border: 2px solid #81c784;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #2e7d32;
+  text-align: center;
 }
 
-body > div > section > ul {
-    list-style-type: none;
-    font-family: 'Verdana';
-    color: darkslategray;
+input[type='number']:focus,
+.item-quantity:focus {
+  outline: none;
+  border-color: #4caf50;
+  background: #f9fff9;
 }
 
-body > div > section > h3 {
-    font-family: 'Gill Sans';
-    color: darkred;
+#receipt-status {
+  margin: 20px auto;
+  padding: 12px;
+  max-width: 600px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #4caf50;
+  border-radius: 5px;
 }
 
-html {
-    background-color: cyan;
+#receipt-status:empty {
+  display: none;
 }
-*/
