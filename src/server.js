@@ -45,6 +45,10 @@ function main() {
     res.sendFile(path.join(__dirname, '../views/receipt.html'));
   });
 
+  app.use((req, res) => {
+    res.status(404).json({ message: 'Page not found' });
+  });
+
   app.listen(PORT, '0.0.0.0', () => {
     console.log(`server listening on port: ${PORT}`);
   });

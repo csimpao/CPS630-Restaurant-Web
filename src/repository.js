@@ -1,6 +1,7 @@
 export default class Repository {
   constructor() {
     this.dict = {};
+    this.receipts = {};
   }
 
   addUser(userId) {
@@ -8,6 +9,9 @@ export default class Repository {
       return false;
     } else {
       this.dict[userId] = {};
+      if (!this.receipts[userId]) {
+        this.receipts[userId] = {};
+      }
       return true;
     }
   }
@@ -40,5 +44,17 @@ export default class Repository {
 
   getOrders(userId) {
     return this.dict[userId];
+  }
+
+  addReceipt(userId, receiptId, receipt) {
+    if (!this.receipts[userId]) {
+      this.receipts[userId] = {};
+    }
+    this.receipts[userId][receiptId] = receipt;
+    return true;
+  }
+
+  getReceipts(userId) {
+    return this.receipts[userId];
   }
 }
