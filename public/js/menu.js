@@ -23,15 +23,13 @@ async function createOrder() {
     return;
   }
 
-  // hardcoded userId for now
-  // creates a new user for every order
+  // support guest being the only user registered before connecting to database
   const userId = 'guest';
   const orderId = `order-${Date.now()}`;
 
   try {
     const userResponse = await fetch(`/api/users/${userId}`, { method: 'POST' });
-    console.log('Create user response:', userResponse.status);
-    if (!userResponse.ok && userResponse.status !== 400) {
+    if (!userResponse.ok) {
       throw new Error('Failed to create user');
     }
 
@@ -42,11 +40,9 @@ async function createOrder() {
     });
 
     if (!response.ok) {
-      console.log('Create order error:', response.status);
       throw new Error('Failed to create order');
     }
 
-    console.log('Create order response:', response.status);
     if (status) status.textContent = 'Order created.';
   } catch (err) {
     console.error('Create order failed:', err);

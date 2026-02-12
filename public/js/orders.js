@@ -1,3 +1,4 @@
+  // support guest being the only user registered before connecting to database
 const userId = 'guest';
 
 function updateTotal() {
@@ -94,7 +95,7 @@ async function loadOrders() {
     const userResponse = await fetch(`/api/users/${userId}`, {
       method: 'POST',
     });
-    if (!userResponse.ok && userResponse.status !== 400) {
+    if (!userResponse.ok) {
       throw new Error('Failed to create user');
     }
 

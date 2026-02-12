@@ -2,6 +2,7 @@ async function loadReceipt() {
   const container = document.getElementById('receipt');
   const status = document.getElementById('receipt-status');
 
+  // support guest being the only user registered before connecting to database
   const userId = 'guest';
 
   if (status) status.textContent = 'Loading receipt...';
@@ -10,7 +11,7 @@ async function loadReceipt() {
     const userResponse = await fetch(`/api/users/${userId}`, {
       method: 'POST',
     });
-    if (!userResponse.ok && userResponse.status !== 400) {
+    if (!userResponse.ok) {
       throw new Error('Failed to create user');
     }
 
