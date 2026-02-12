@@ -7,7 +7,9 @@ async function loadReceipt() {
   if (status) status.textContent = 'Loading receipt...';
 
   try {
-    const userResponse = await fetch(`/api/users/${userId}`, { method: 'POST' });
+    const userResponse = await fetch(`/api/users/${userId}`, {
+      method: 'POST',
+    });
     if (!userResponse.ok && userResponse.status !== 400) {
       throw new Error('Failed to create user');
     }
@@ -25,8 +27,11 @@ async function loadReceipt() {
 
     if (entries.length === 0) {
       if (status) status.textContent = 'No orders to show.';
+      container.style.display = 'none';
       return;
     }
+
+    container.style.display = 'block';
 
     let grandTotal = 0;
 
