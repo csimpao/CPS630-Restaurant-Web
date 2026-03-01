@@ -5,6 +5,7 @@ import Section from './Section';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useCallback } from 'react';
+import { useUser } from '../../hooks/useUser';
 
 const DEFAULT_RESPONSE = {
   Appetizers: [],
@@ -13,6 +14,7 @@ const DEFAULT_RESPONSE = {
 };
 
 function Order() {
+  const userId = useUser();
   const navigate = useNavigate();
   const [dishes, setDishes] = useState(DEFAULT_RESPONSE);
   const [order, setOrder] = useState({});
@@ -59,7 +61,6 @@ function Order() {
   );
 
   const createOrder = useCallback(async () => {
-    const userId = 'guest';
     const orderId = `order-${Date.now()}`;
 
     try {
@@ -91,7 +92,7 @@ function Order() {
       console.error('Create order failed:', err);
       setOrderStatus('Unable to create order.');
     }
-  }, [order]);
+  }, [order, userId]);
 
   return (
     <>
