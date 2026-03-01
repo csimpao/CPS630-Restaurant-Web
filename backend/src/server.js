@@ -1,7 +1,7 @@
 import express from 'express';
 import api from './api/index.js';
 import Repository from './repository.js';
-
+import cors from 'cors';
 
 const PORT = 8080;
 const MENU_ITEMS = [
@@ -16,9 +16,14 @@ const MENU_ITEMS = [
   { id: 'puffs', name: 'Ice Cream Puffs', category: 'Dessert', price: 7.49 }
 ];
 
+
 function main() {
   const app = express();
   const repository = new Repository();
+
+  app.use(cors({
+    origin: "http://localhost:5173",
+  }));
 
   app.use(express.json());
   app.use('/api', api(repository));
