@@ -1,13 +1,7 @@
 import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
 import api from './api/index.js';
 import Repository from './repository.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 const PORT = 8080;
 const MENU_ITEMS = [
@@ -27,22 +21,10 @@ function main() {
   const repository = new Repository();
 
   app.use(express.json());
-  app.use(express.static(path.join(process.cwd(), 'public')));
-
   app.use('/api', api(repository));
   
   app.get('/api/menu', (req, res) => {
     res.json(MENU_ITEMS);
-  });
-
-  app.get('/menu', (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/menu.html'));
-  });
-  app.get('/orders', (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/orders.html'));
-  });
-  app.get('/receipt', (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/receipt.html'));
   });
 
   app.use((req, res) => {
