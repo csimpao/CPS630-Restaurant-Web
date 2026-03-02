@@ -1,16 +1,16 @@
-const addReceipt = (repository) => (req, res) => {
+import Receipt from '../models/Receipt.js';
+
+const addReceipt = async (req, res) => {
   const { userId, receiptId } = req.params;
   const { receipt } = req.body;
-
-  const success = repository.addReceipt(userId, receiptId, receipt);
-  if (success) {
-    res.status(200).json({
-      message: 'success',
-    });
-  } else {
-    res.status(400).json({
-      message: 'invalid user',
-    });
+  try {
+    await Receipt.findOneAndUpdate(
+      { userId, receiptId },
+      { receipt }
+    );
+    res.status(200).json({ message: 'success' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
