@@ -1,15 +1,15 @@
-const deleteItem = (repository) => (req, res) => {
-  const { userId, orderId } = req.params;
+import Order from '../models/Order.js';
 
-  const success = repository.deleteItem(userId, orderId);
-  if (success) {
-    res.status(200).json({
-      message: 'success',
-    });
-  } else {
-    res.status(400).json({
-      message: 'invalid user or order',
-    });
+const deleteItem = async (req, res) => {
+  const { userId, orderId } = req.params;
+  try {
+    const result = await Order.findOneAndDelete({ userId, orderId });
+    if (!result) {
+      return res.status(400).json({ message: 'invalid user or order' });
+    }
+    res.status(200).json({ message: 'success' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 

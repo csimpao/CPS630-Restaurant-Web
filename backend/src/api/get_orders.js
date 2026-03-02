@@ -1,13 +1,22 @@
-const getOrders = (repository) => (req, res) => {
-  const { userId } = req.params;
+import User  from '../models/User.js';
+import Order from '../models/Order.js';
 
-  const orders = repository.getOrders(userId);
-  if (orders) {
+const getOrders = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const user = await User.findOne({ userId });
+    if (!user) {
+      return res.status(400).json({ message: 'invalid user' });
+    }
+    const docs = await Order.find({ userId });
+
+    const orders = {};
+    for (const doc of docs) {
+      orders[doc.orderId] = doc.order;
+    }
     res.status(200).json(orders);
-  } else {
-    res.status(400).json({
-      message: 'invalid user',
-    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
