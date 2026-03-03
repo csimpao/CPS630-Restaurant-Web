@@ -122,3 +122,90 @@ button:disabled {
 #orders-status:empty {
   display: none;
 }
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: 2px solid #81c784;
+  background: white;
+  color: #2e7d32;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease;
+}
+
+.qty-btn:first-child {
+  border-radius: 6px 0 0 6px;
+}
+
+.qty-btn:hover {
+  background-color: #e8f5e9;
+}
+
+.qty-btn:active {
+  background-color: #c8e6c9;
+}
+
+.qty-value {
+  width: 36px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.95em;
+  color: #2e7d32;
+  background: #f9fff9;
+  border-top: 2px solid #81c784;
+  border-bottom: 2px solid #81c784;
+  border-left: none;
+  border-right: none;
+}
+
+.qty-controls .qty-btn:nth-child(3) {
+  border-radius: 0 6px 6px 0;
+}
+
+.qty-btn-delete {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 0 0 0 8px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  background: #dc3545;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease;
+}
+
+.qty-btn-delete:hover {
+  background-color: #b02a37;
+}

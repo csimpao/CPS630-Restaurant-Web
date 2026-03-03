@@ -6,20 +6,26 @@ function Section({ title, items, onChange, order }) {
       <h3>{title}</h3>
       <ul>
         {items.map((item) => {
+          const qty = (order[item.id] ?? { quantity: 0 }).quantity;
           return (
             <Fragment key={item.id}>
-              <li>
-                <label>
-                  <span>{`${item.name} - $${item.price.toFixed(2)}`}</span>
-                </label>
-                <input
-                  type="number"
-                  min={0}
-                  step={1}
-                  id={`qty-${item.id}`}
-                  onChange={(e) => onChange(item, e.target.value)}
-                  value={(order[item.id] ?? { quantity: 0 }).quantity}
-                />
+              <li className="menu-item">
+                <span className="item-info">{`${item.name} - $${item.price.toFixed(2)}`}</span>
+                <div className="qty-controls">
+                  <button
+                    className="qty-btn"
+                    onClick={() => onChange(item, Math.max(0, qty - 1))}
+                  >
+                    &minus;
+                  </button>
+                  <span className="qty-value">{qty}</span>
+                  <button
+                    className="qty-btn"
+                    onClick={() => onChange(item, qty + 1)}
+                  >
+                    +
+                  </button>
+                </div>
               </li>
             </Fragment>
           );
