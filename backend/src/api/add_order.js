@@ -12,6 +12,7 @@ const orderItem = async (req, res) => {
     await Order.findOneAndUpdate(
       { userId, orderId },
       { order },
+      { upsert: true, new: true },
     );
     res.status(200).json({ message: 'success' });
   } catch (err) {

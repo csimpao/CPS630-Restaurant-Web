@@ -6,7 +6,8 @@ const addReceipt = async (req, res) => {
   try {
     await Receipt.findOneAndUpdate(
       { userId, receiptId },
-      { receipt }
+      { receipt },
+      { upsert: true, new: true },
     );
     res.status(200).json({ message: 'success' });
   } catch (err) {
