@@ -160,37 +160,35 @@ function Orders() {
             </button>
           </div>
           <ul>
-            {Object.entries(orderItems).map(([itemId, item]) => (
-              <li key={itemId} style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                <span>{item.name} &mdash; ${item.price.toFixed(2)} &times;</span>
-                <input
-                  type="number"
-                  min="0"
-                  value={quantities[orderId]?.[itemId] ?? item.quantity}
-                  onChange={(e) => updateQuantity(orderId, itemId, e.target.value)}
-                  style={{ width: '50px' }}
-                />
-                <button
-                  onClick={() => deleteItem(orderId, itemId)}
-                  style={{
-                    backgroundColor: '#dc3545',
-                    color: 'white',
-                    border: 'none',
-                    width: '20px',
-                    height: '20px',
-                    borderRadius: '3px',
-                    cursor: 'pointer',
-                    fontSize: '12px',
-                    padding: 0,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  X
-                </button>
+            {Object.entries(orderItems).map(([itemId, item]) => {
+              const qty = parseInt(quantities[orderId]?.[itemId], 10) || 0;
+              return (
+              <li key={itemId} className="menu-item">
+                <span className="item-info">{item.name} &mdash; ${item.price.toFixed(2)}</span>
+                <div className="qty-controls">
+                  <button
+                    className="qty-btn"
+                    onClick={() => updateQuantity(orderId, itemId, Math.max(0, qty - 1))}
+                  >
+                    &minus;
+                  </button>
+                  <span className="qty-value">{qty}</span>
+                  <button
+                    className="qty-btn"
+                    onClick={() => updateQuantity(orderId, itemId, qty + 1)}
+                  >
+                    +
+                  </button>
+                  <button
+                    className="qty-btn-delete"
+                    onClick={() => deleteItem(orderId, itemId)}
+                  >
+                    &times;
+                  </button>
+                </div>
               </li>
-            ))}
+              );
+            })}
           </ul>
         </section>
       ))}
