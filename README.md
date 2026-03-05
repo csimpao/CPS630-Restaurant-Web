@@ -1,88 +1,154 @@
-# The Node Restaurant Web App
+# CPS 630 A2: Restaurant CRUD Application
 
 ## Overview
-The Node Restaurant Web App is a full-stack restaurant ordering demo built with Node.js, Express, and HTML/CSS/JavaScript.
+This project is a full-stack restaurant ordering web application for CPS 630 (Winter 2026).
 
-Its core purpose is to simulate a basic restaurant ordering workflow:
-1. Browse a menu.
-2. Create an order.
-3. Review/edit/delete orders.
-4. Confirm and view a receipt.
+It lets a user:
+- Browse menu items.
+- Create and manage orders.
+- Confirm orders and view receipts.
 
-The backend currently stores data in memory (no database) using a JSON object.
+### Future Extensions
+Possible future improvements include:
+- Authentication and role-based access (customer/admin).
+- Order status workflow (pending, preparing, completed).
+- Payment integration.
+- Search/filter/sort for menu items and order history.
+- Admin dashboard for menu management.
 
-## Important Files Summary
-- `src/server.js`: Application entry point. Configures Express, static file hosting, API routing, menu endpoint, page routes, and server startup on port `8080`.
-- `src/repository.js`: In-memory data store for users, orders, and receipts.
-- `src/api/index.js`: Central API router wiring endpoint handlers.
-- `src/api/*.js`: Individual REST handlers for add/get/delete user/order/receipt operations.
-- `public/js/menu.js`: Loads menu items and creates orders from quantity inputs.
-- `public/js/orders.js`: Displays orders, allows deletion of full orders and individual items, computes totals, confirms order into receipt data.
-- `public/js/receipt.js`: Loads and displays saved receipts with subtotals and grand total.
-- `views/menu.html`, `views/orders.html`, `views/receipt.html`: Main UI pages for the app flow.
-- `src/repository.test.js`: Jest unit tests for repository behavior.
-- `package.json`: Scripts and project dependencies.
+## Tech Stack
+- Back-End: Node.js, Express, Mongoose, MongoDB
+- Front-End: React, Vite, React Router
+- Data: MongoDB collections for users, orders, receipts, and menu items
 
-## How To Run The Project
-### Install dependencies
+## Project Structure
+- `backend/` - Express API and MongoDB models
+- `frontend/` - React + Vite client app
+
+## Back-End Checklist
+- Node.js + Express API: Implemented in `backend/src/server.js` and `backend/src/api/*`.
+- MongoDB database connection: Implemented via `mongoose.connect(process.env.MONGODB_URI)`.
+- Startup test data seeding function: Implemented in `backend/src/seed.js`.
+  - On server startup, the app checks whether menu items already exist.
+  - If the menu collection is empty, it inserts seed menu data.
+- Runs on `localhost:8080`: Server listens on port `8080`.
+
+## Front-End Checklist
+- React + Vite application: Implemented in `frontend/`.
+- At least 3 different web views:
+  - `/menu`
+  - `/orders`
+  - `/receipt`
+- CRUD-supported view(s):
+  - The Orders flow supports create/read/update/delete behavior through API calls.
+- Runs on `localhost:5173`: Vite dev server runs on port `5173`.
+
+## REST API (CRUD)
+Base URL: `http://localhost:8080/api`
+
+### Menu
+- `GET /menu`
+  - Purpose: Read multiple menu items.
+  - Success: `200 OK`
+
+### Users
+- `POST /users/:userId`
+  - Purpose: Create user if missing.
+  - Success: `200 OK`
+  - Error: `500 Internal Server Error`
+
+### Orders
+- `POST /users/:userId/orders/:orderId`
+  - Purpose: Create or update an order (upsert behavior).
+  - Success: `200 OK`
+  - Client error: `400 Bad Request` (invalid user)
+  - Error: `500 Internal Server Error`
+
+- `GET /users/:userId/orders`
+  - Purpose: Read multiple orders for a user.
+  - Success: `200 OK`
+  - Client error: `400 Bad Request` (invalid user)
+  - Error: `500 Internal Server Error`
+
+- `DELETE /users/:userId/orders/:orderId`
+  - Purpose: Delete an order.
+  - Success: `200 OK`
+  - Client error: `400 Bad Request` (invalid user or order)
+  - Error: `500 Internal Server Error`
+
+### Receipts
+- `POST /users/:userId/receipts/:receiptId`
+  - Purpose: Create a receipt.
+  - Success: `200 OK`
+  - Client error: `400 Bad Request` (invalid user)
+  - Error: `500 Internal Server Error`
+
+- `GET /users/:userId/receipts`
+  - Purpose: Read multiple receipts.
+  - Success: `200 OK`
+  - Client error: `400 Bad Request` (invalid user)
+  - Error: `500 Internal Server Error`
+
+## Setup and Run
+
+## 1) Back-End (localhost:8080)
+From the project root:
+
 ```bash
+cd backend
 npm install
 ```
 
-### Start the app
+Create a `.env` file in `backend/`:
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+```
+
+Start the back-end:
+
+```bash
+npm run start
+```
+
+If your `backend/package.json` does not yet define `start`, use:
+
 ```bash
 npm run dev
 ```
 
-Server starts at:
+Back-end URL:
 - `http://localhost:8080`
 
-Open the menu route to get the main menu page:
-- `http://localhost:8080/menu`
-
-## How To Use The Web App
-1. Go to `/menu`.
-2. Enter quantities for one or more menu items by utilizing the stepper.
-3. Click **Create Order**.
-4. Click **View Orders** to review/edit quantities and see total cost.
-5. On `/orders`, click **Delete Order** beside any order to remove the full order.
-6. On `/orders`, click **X** beside any item to remove only that item from the order.
-7. Click **Confirm Order** to finalize and generate a receipt.
-8. On `/receipt`, review subtotal(s) and grand total.
-9. Use navigation buttons to return to menu or edit orders.
-
-## API Overview
-### Menu
-- `GET /api/menu` - Returns static menu items.
-
-### Users
-- `POST /api/users/:userId` - Creates a user if not already present.
-- `DELETE /api/users/:userId` - Deletes user data.
-
-### Orders
-- `POST /api/users/:userId/orders/:orderId` - Saves an order payload.
-- `GET /api/users/:userId/orders` - Returns all current orders for the user.
-- `DELETE /api/users/:userId/orders/:orderId` - Deletes a specific order.
-
-### Receipts
-- `POST /api/users/:userId/receipts/:receiptId` - Saves a receipt payload.
-- `GET /api/users/:userId/receipts` - Returns all receipts for the user.
-
-## Testing
-Run the following command
+## 2) Front-End (localhost:5173)
+In a second terminal:
 
 ```bash
-npm run test
+cd frontend
+npm install
+npm run dev
 ```
 
-Current unit tests cover repository operations in `src/repository.test.js`.
+Front-end URL:
+- `http://localhost:5173`
 
-### Reflection
+## How to Use the App
+1. Open `http://localhost:5173/menu`.
+2. Select quantities and create an order.
+3. Go to `/orders` to view current orders.
+4. Update quantities or remove specific items/orders.
+5. Confirm order to generate a receipt.
+6. Go to `/receipt` to view receipt history and totals.
 
-#### Challenges and Successes
+## Notes
+- The seed function only inserts menu data when the menu collection is empty.
 
-- Configured the repository pattern successfully to ensure scalability and ease of access when hooking the code up with a database
-- Dynamically creating HTML elements using JavaScript to ensure modularity and flexibility for displaying menu items
-- Handling pull requests between teammates with ease and adequate communication
-- Understanding the repository pattern in order to apply it to our codebase
-- Handling different states of the app depending on what is returned from the backend
+## Reflection
+- Overview: restaurant web app take saves users orders and receipts using MongoDB
+- Ongoing communication between team members to connect different parts as we are building asynchronously
+- Refactoring static HTML pages to React components
+- Thinking considerably on system design to modularize React components
+- Testing the app and brainstorming edge cases as it was refactored to React
+- Ensuring errors are handled from both backend and frontend
+- Validating inputs on both frontend and backend to ensure validity of requests
+- Setting up MongoDB as a cluster on the cloud, so it will run 24/7
